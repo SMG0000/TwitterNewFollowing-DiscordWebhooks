@@ -30,7 +30,7 @@ pathDatabase = os.path.dirname(os.path.realpath(__file__)) + "/database.csv"
 database = dict()
 author = dict()
 content = dict()
-csvHeading = ["idTweeter","lastSuscribings"]
+csvHeading = ["idTweeter","lastFollowing"]
 newFollowings = False
 
 # Read CSV file to know get the following list and then update it.
@@ -44,7 +44,7 @@ try:
     else:
         reader = csv.DictReader(fileDatabase, delimiter=',')
         for data in reader:
-            database[data['idTweeter']] = data['lastSuscribings'].split(';')
+            database[data['idTweeter']] = data['lastFollowing'].split(';')
         fileDatabase.close()
         print("Database successfuly read")
 except OSError:
@@ -111,8 +111,8 @@ def followers():
                 with open(pathDatabase, 'w') as fileDatabase:
                     writer = csv.writer(fileDatabase, delimiter=',')
                     writer.writerow(csvHeading)
-                    for idTweeter, lastSuscribings in database.items():
-                        writer.writerow([idTweeter, ';'.join(lastSuscribings)])
+                    for idTweeter, lastFollowing in database.items():
+                        writer.writerow([idTweeter, ';'.join(lastFollowing)])
                 print("Finished rewriting!") 
                 
             print("Completed check! 60 second interval.")
