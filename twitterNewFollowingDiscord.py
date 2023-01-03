@@ -20,7 +20,7 @@ randomFooter = ["N'oubliez pas de DYOR !", "Plein de love.", "Bonne journée !",
 
 # Discord incoming webhook URL
 
-webhook = DiscordWebhook(url=config["discord_webhook"], username="Twitter Following")
+webhook = DiscordWebhook(url=config["discord_webhook"], username="Twitter Stalker")
 
 # Database
 
