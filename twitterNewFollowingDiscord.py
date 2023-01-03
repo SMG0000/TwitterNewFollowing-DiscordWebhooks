@@ -85,7 +85,7 @@ def followers():
                     author['URL'] = "https://twitter.com/" + personWhoFollows[0].username
                     author['IconURL'] = personWhoFollows[0].profile_image_url
 
-                    content['title'] = "Followed @" + lastFollowings[0][i].username + "!"
+                    content['title'] = "Followed @" + lastFollowings[0][i].username
                     content['description'] = lastFollowings[0][i].description
                     content['url'] = "https://twitter.com/" + lastFollowings[0][i].username
 
