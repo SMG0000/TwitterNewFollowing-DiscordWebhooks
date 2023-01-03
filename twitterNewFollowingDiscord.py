@@ -115,9 +115,8 @@ def followers():
                         writer.writerow([idTweeter, ';'.join(lastFollowing)])
                 print("Finished rewriting!") 
                 
-            print("Completed check! 10 second interval.")
+            print("Completed check! 60 second interval.")
 
-            time.sleep(10)        
-    while False: print("This is a private account.")
+            time.sleep(60)        
  
 followers()
