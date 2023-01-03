@@ -16,7 +16,7 @@ client = tweepy.Client(bearer_token=config["bearer_token"])
 # Variables - configure the bits below to get your script working. 
 
 style = "1da1f2"   # Colour for the message - default is Twitter Bird blue
-randomFooter = ["N'oubliez pas de DYOR !", "Plein de love.", "Bonne journée !", "Cordialement !", "(ɔ◔‿◔)ɔ ♥"]
+randomFooter = ["Don't forget to DYOR!", "A lot of love.", "Have a nice day!", "Sincerely!", "(ɔ◔‿◔)ɔ ♥"]
 
 # Discord incoming webhook URL
 
