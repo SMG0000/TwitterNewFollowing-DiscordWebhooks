@@ -65,7 +65,7 @@ def followers():
         # We are going to loop the database, and thus comparing the database with the data of the API.
         for key, value in database.items():
             popValuesFromDB = 0
-            print("Check en cours pour", key)
+            print("Checking in progress for", key)
             # We get the last followings of the user.
             lastFollowings = client.get_users_following(id=key, max_results=3, user_fields=['description','profile_image_url'])
             # We loop through the 3 last followings of the user.
@@ -73,7 +73,7 @@ def followers():
                 if (str(lastFollowings[0][i].id) not in value):
 
                     personWhoFollows = client.get_user(id=key, user_fields=['profile_image_url'])
-                    print(f"Nouvel abonnement pour @{personWhoFollows[0].username} !")
+                    print(f"@{personWhoFollows[0].username} !")
 
                     # We update the database values : we insert the new followings.
                     database[key].insert(0,str(lastFollowings[0][i].id))
@@ -81,11 +81,11 @@ def followers():
                     popValuesFromDB += 1
 
                     # Prepare values for Discord notification
-                    author['name'] = "Nouvel abonnement pour @" + personWhoFollows[0].username + "!"
+                    author['name'] = "@" + personWhoFollows[0].username + "!"
                     author['URL'] = "https://twitter.com/" + personWhoFollows[0].username
                     author['IconURL'] = personWhoFollows[0].profile_image_url
 
-                    content['title'] = "Clique ici pour suivre @" + lastFollowings[0][i].username + "!"
+                    content['title'] = "Followed @" + lastFollowings[0][i].username + "!"
                     content['description'] = lastFollowings[0][i].description
                     content['url'] = "https://twitter.com/" + lastFollowings[0][i].username
 
@@ -107,15 +107,15 @@ def followers():
                 for i in range (0, popValuesFromDB):
                     database[key].pop()
                 # We write down on the CSV file the newest database
-                print("Réécriture BDD en cours...")
+                print("Database rewriting in progress...")
                 with open(pathDatabase, 'w') as fileDatabase:
                     writer = csv.writer(fileDatabase, delimiter=',')
                     writer.writerow(csvHeading)
                     for idTweeter, lastSuscribings in database.items():
                         writer.writerow([idTweeter, ';'.join(lastSuscribings)])
-                print("Réécriture finie !") 
+                print("Finished rewriting!") 
                 
-            print("Check fini ! Attente de 60 secondes !")
+            print("Completed check! 60 second interval.")
 
             time.sleep(60)
 
