@@ -117,6 +117,7 @@ def followers():
                 
             print("Completed check! 10 second interval.")
 
-            time.sleep(10)
-
+            time.sleep(10)        
+    while False: print("This is a private account.")
+ 
 followers()
