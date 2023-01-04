@@ -60,6 +60,7 @@ except OSError:
         print("File couldn't be created. The program will be stopped.")
         sys.exit()
 
+
 def followers():
     while True:
         # We are going to loop the database, and thus comparing the database with the data of the API.
@@ -118,5 +119,3 @@ def followers():
             print("Completed check! 60 seconds interval.")
 
             time.sleep(60)        
- 
-followers()
