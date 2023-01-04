@@ -63,62 +63,62 @@ except OSError:
 
 def followers():
     return ("This is a private account.")
-    while True:
-        # We are going to loop the database, and thus comparing the database with the data of the API.
-        for key, value in database.items():
-            popValuesFromDB = 0
-            print("Checking in progress for", key)
-            # We get the last followings of the user.
-            lastFollowings = client.get_users_following(id=key, max_results=3, user_fields=['description','profile_image_url'])
-            # We loop through the 3 last followings of the user.
-            for i in range(0,3):
-                if (str(lastFollowings[0][i].id) not in value):
+        while True:
+            # We are going to loop the database, and thus comparing the database with the data of the API.
+            for key, value in database.items():
+                 popValuesFromDB = 0
+                 print("Checking in progress for", key)
+                 # We get the last followings of the user.
+                 lastFollowings = client.get_users_following(id=key, max_results=3, user_fields=['description','profile_image_url'])
+                 # We loop through the 3 last followings of the user.
+                 for i in range(0,3):
+                     if (str(lastFollowings[0][i].id) not in value):
 
-                    personWhoFollows = client.get_user(id=key, user_fields=['profile_image_url'])
-                    print(f"@{personWhoFollows[0].username} !")
+                         personWhoFollows = client.get_user(id=key, user_fields=['profile_image_url'])
+                         print(f"@{personWhoFollows[0].username} !")
 
-                    # We update the database values : we insert the new followings.
-                    database[key].insert(0,str(lastFollowings[0][i].id))
-                    # We need to delete the older values when we're done looping.
-                    popValuesFromDB += 1
+                         # We update the database values : we insert the new followings.
+                         database[key].insert(0,str(lastFollowings[0][i].id))
+                         # We need to delete the older values when we're done looping.
+                         popValuesFromDB += 1
 
-                    # Prepare values for Discord notification
-                    author['name'] = "@" + personWhoFollows[0].username + " is now following"
-                    author['URL'] = "https://twitter.com/" + personWhoFollows[0].username
-                    author['IconURL'] = personWhoFollows[0].profile_image_url
+                         # Prepare values for Discord notification
+                         author['name'] = "@" + personWhoFollows[0].username + " is now following"
+                         author['URL'] = "https://twitter.com/" + personWhoFollows[0].username
+                         author['IconURL'] = personWhoFollows[0].profile_image_url
 
-                    content['title'] = "@" + lastFollowings[0][i].username
-                    content['description'] = lastFollowings[0][i].description
-                    content['url'] = "https://twitter.com/" + lastFollowings[0][i].username
+                         content['title'] = "@" + lastFollowings[0][i].username
+                         content['description'] = lastFollowings[0][i].description
+                         content['url'] = "https://twitter.com/" + lastFollowings[0][i].username
 
-                    # # Send Discord notification
-                    webhook.remove_embeds()
+                         # # Send Discord notification
+                         webhook.remove_embeds()
 
-                    embed = DiscordEmbed(title=content['title'], description=content['description'], color=style, url=content['url'])
-                    embed.set_author(name=author['name'], url=author['URL'], icon_url=author['IconURL'])
-                    embed.set_image(url=lastFollowings[0][i].profile_image_url)
-                    ##embed.set_footer(text=random.choice(randomFooter))
-                    embed.set_timestamp()
+                         embed = DiscordEmbed(title=content['title'], description=content['description'], color=style, url=content['url'])
+                         embed.set_author(name=author['name'], url=author['URL'], icon_url=author['IconURL'])
+                         embed.set_image(url=lastFollowings[0][i].profile_image_url)
+                         ##embed.set_footer(text=random.choice(randomFooter))
+                         embed.set_timestamp()
 
-                    webhook.add_embed(embed)
-                    webhook.execute()
+                         webhook.add_embed(embed)
+                         webhook.execute()
                     
-                    time.sleep(1)
+                         time.sleep(1)
 
-            if (popValuesFromDB != 0):
-                for i in range (0, popValuesFromDB):
-                    database[key].pop()
-                # We write down on the CSV file the newest database
-                print("Database rewriting in progress...")
-                with open(pathDatabase, 'w') as fileDatabase:
-                    writer = csv.writer(fileDatabase, delimiter=',')
-                    writer.writerow(csvHeading)
-                    for idTweeter, lastFollowing in database.items():
-                        writer.writerow([idTweeter, ';'.join(lastFollowing)])
-                print("Finished rewriting!") 
+                 if (popValuesFromDB != 0):
+                     for i in range (0, popValuesFromDB):
+                         database[key].pop()
+                     # We write down on the CSV file the newest database
+                     print("Database rewriting in progress...")
+                     with open(pathDatabase, 'w') as fileDatabase:
+                         writer = csv.writer(fileDatabase, delimiter=',')
+                         writer.writerow(csvHeading)
+                         for idTweeter, lastFollowing in database.items():
+                         writer.writerow([idTweeter, ';'.join(lastFollowing)])
+                     print("Finished rewriting!") 
                 
-            print("Completed check! 60 seconds interval.")
+                 print("Completed check! 60 seconds interval.")
 
-            time.sleep(60)    
+                time.sleep(60)    
 
 followers()    
