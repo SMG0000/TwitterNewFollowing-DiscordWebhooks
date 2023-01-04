@@ -118,4 +118,6 @@ def followers():
                 
             print("Completed check! 60 seconds interval.")
 
-            time.sleep(60)        
+            time.sleep(60)    
+
+followers()    
