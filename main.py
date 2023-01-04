@@ -62,7 +62,7 @@ except OSError:
 
 
 def followers():
-    
+    result = ["This is a private account."]
     while True:
         # We are going to loop the database, and thus comparing the database with the data of the API.
         for key, value in database.items():
@@ -120,5 +120,6 @@ def followers():
             print("Completed check! 60 seconds interval.")
 
             time.sleep(60)    
-
+    return result
+    
 followers()    
