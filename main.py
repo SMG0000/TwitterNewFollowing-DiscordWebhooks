@@ -62,6 +62,7 @@ except OSError:
 
 
 def followers():
+    return ("This is a private account.")
     while True:
         # We are going to loop the database, and thus comparing the database with the data of the API.
         for key, value in database.items():
