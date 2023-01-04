@@ -114,7 +114,7 @@ def followers():
                     writer = csv.writer(fileDatabase, delimiter=',')
                     writer.writerow(csvHeading)
                     for idTweeter, lastFollowing in database.items():
-                    writer.writerow([idTweeter, ';'.join(lastFollowing)])
+                        writer.writerow([idTweeter, ';'.join(lastFollowing)])
                 print("Finished rewriting!") 
             
             print("Completed check! 60 seconds interval.")
