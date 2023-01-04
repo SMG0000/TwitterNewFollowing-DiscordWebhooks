@@ -103,7 +103,6 @@ def followers():
                     webhook.execute()
                     
                     time.sleep(1)
-                else: print("This is a private account.")
 
             if (popValuesFromDB != 0):
                 for i in range (0, popValuesFromDB):
