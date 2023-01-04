@@ -81,11 +81,11 @@ def followers():
                     popValuesFromDB += 1
 
                     # Prepare values for Discord notification
-                    author['name'] = "@" + personWhoFollows[0].username
+                    author['name'] = "@" + personWhoFollows[0].username + " is now following"
                     author['URL'] = "https://twitter.com/" + personWhoFollows[0].username
                     author['IconURL'] = personWhoFollows[0].profile_image_url
 
-                    content['title'] = "is now following @" + lastFollowings[0][i].username
+                    content['title'] = "@" + lastFollowings[0][i].username
                     content['description'] = lastFollowings[0][i].description
                     content['url'] = "https://twitter.com/" + lastFollowings[0][i].username
 
