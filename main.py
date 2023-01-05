@@ -62,13 +62,17 @@ except OSError:
 
 
 def followers():
+    
     while True:
         # We are going to loop the database, and thus comparing the database with the data of the API.
         for key, value in database.items():
             popValuesFromDB = 0
             print("Checking in progress for", key)
             # We get the last followings of the user.
+
             lastFollowings = client.get_users_following(id=key, max_results=3, user_fields=['description','profile_image_url'])
+            if type(lastFollowings)== 'NoneType':
+                lastFollowings='null'
             # We loop through the 3 last followings of the user.
             for i in range(0,3):
                 if (str(lastFollowings[0][i].id) not in value):
