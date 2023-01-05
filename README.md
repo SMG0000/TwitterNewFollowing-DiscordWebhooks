@@ -39,7 +39,7 @@ The IDs behind the first columns are the 6 last people that the ID followed: so 
 
 Now that you set up everything, you should be able to run the python file smoothly:
 ```
-python3 twitterNewFollowingDiscord.py
+python3 main.py
 ```
 
 Have fun 😎
