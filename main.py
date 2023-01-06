@@ -83,7 +83,7 @@ def followers():
                     popValuesFromDB += 1
 
                     # Prepare values for Discord notification
-                    author['name'] = "@" + personWhoFollows[0].username + " is now following"
+                    author['name'] = "@" + personWhoFollows[0].username + " is now following "
                     author['URL'] = "https://twitter.com/" + personWhoFollows[0].username
                     author['IconURL'] = personWhoFollows[0].profile_image_url
 
@@ -92,13 +92,15 @@ def followers():
                     content['url'] = "https://twitter.com/" + lastFollowings[0][i].username
 
                     # # Send Discord notification
-                    webhook.remove_embeds()
+                    webhook.set_content(author['name'] + content['title'] + '!')
 
+                    webhook.remove_embeds()
+                    
                     embed = DiscordEmbed(title=content['title'], description=content['description'], color=style, url=content['url'])
                     embed.set_author(name=author['name'], url=author['URL'], icon_url=author['IconURL'])
                     embed.set_image(url=lastFollowings[0][i].profile_image_url)
                     embed.set_timestamp()
-
+                    
                     webhook.add_embed(embed)
                     webhook.execute()
                     
