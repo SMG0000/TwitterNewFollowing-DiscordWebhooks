@@ -3,7 +3,6 @@ import time
 import csv
 import sys
 import os
-import random
 from dotenv import dotenv_values
 from discord_webhook import DiscordWebhook, DiscordEmbed
 
@@ -16,7 +15,6 @@ client = tweepy.Client(bearer_token=config["bearer_token"])
 # Variables - configure the bits below to get your script working. 
 
 style = "1da1f2"   # Colour for the message - default is Twitter Bird blue
-randomFooter = ["Don't forget to DYOR!", "A lot of love.", "Have a nice day!", "Sincerely!", "(ɔ◔‿◔)ɔ ♥"]
 
 # Discord incoming webhook URL
 
@@ -99,7 +97,6 @@ def followers():
                     embed = DiscordEmbed(title=content['title'], description=content['description'], color=style, url=content['url'])
                     embed.set_author(name=author['name'], url=author['URL'], icon_url=author['IconURL'])
                     embed.set_image(url=lastFollowings[0][i].profile_image_url)
-                    ##embed.set_footer(text=random.choice(randomFooter))
                     embed.set_timestamp()
 
                     webhook.add_embed(embed)
