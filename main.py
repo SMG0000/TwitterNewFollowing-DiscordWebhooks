@@ -70,10 +70,10 @@ def followers():
             print("Checking in progress for", key)
             # We get the last followings of the user.
 
-            lastFollowings = client.get_users_following(id=key, max_results=3, user_fields=['description','profile_image_url'])
+            lastFollowings = client.get_users_following(id=key, max_results=10, user_fields=['description','profile_image_url'])
             
-            # We loop through the 3 last followings of the user.
-            for i in range(0,3):
+            # We loop through the 10 last followings of the user.
+            for i in range(0,10):
                 if (str(lastFollowings[0][i].id) not in value):
 
                     personWhoFollows = client.get_user(id=key, user_fields=['profile_image_url'])
