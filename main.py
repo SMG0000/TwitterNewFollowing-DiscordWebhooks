@@ -92,7 +92,7 @@ def followers():
                     content['url'] = "https://twitter.com/" + lastFollowings[0][i].username
 
                     # # Send Discord notification
-                    webhook.set_content(author['name'] + content['title'] + '!')
+                    webhook.set_content(author['name'] + content['title'] + ' !')
 
                     webhook.remove_embeds()
                     
