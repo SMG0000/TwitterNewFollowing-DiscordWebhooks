@@ -18,7 +18,7 @@ style = "1da1f2"   # Colour for the message - default is Twitter Bird blue
 
 # Discord incoming webhook URL
 
-webhook = DiscordWebhook(url=config["discord_webhook"], username="Twitter Stalker")
+webhook = DiscordWebhook(url=config["discord_webhook"], username="Twitter Follow Alert")
 
 # Database
 
@@ -83,7 +83,7 @@ def followers():
                     popValuesFromDB += 1
 
                     # Prepare values for Discord notification
-                    author['name'] = "@" + personWhoFollows[0].username + " is now following "
+                    author['name'] = "@" + personWhoFollows[0].username 
                     author['URL'] = "https://twitter.com/" + personWhoFollows[0].username
                     author['IconURL'] = personWhoFollows[0].profile_image_url
 
@@ -92,12 +92,12 @@ def followers():
                     content['url'] = "https://twitter.com/" + lastFollowings[0][i].username
 
                     # # Send Discord notification
-                    webhook.set_content(author['name'] + content['title'] + ' !')
+                    ## webhook.set_content(author['name'] + ' is now following ' + content['title'] + ' !')
 
                     webhook.remove_embeds()
                     
                     embed = DiscordEmbed(title=content['title'], description=content['description'], color=style, url=content['url'])
-                    embed.set_author(name=author['name'], url=author['URL'], icon_url=author['IconURL'])
+                    embed.set_author(name=author['name'] + " is now following", url=author['URL'], icon_url=author['IconURL'])
                     embed.set_image(url=lastFollowings[0][i].profile_image_url)
                     embed.set_timestamp()
                     

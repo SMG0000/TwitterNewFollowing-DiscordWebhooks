@@ -33,7 +33,7 @@ $ echo "discord_webhook=yourdiscordwebhook" >> .env
 Lastly, you have to update the CSV file with the Twitter IDs you want to look up.
 For this, go on [Twitter ID](https://tweeterid.com) and then type the @handle of the person you want to follow. Then, copy/paste the ID in the CSV file in the first column.
 
-The IDs behind the first columns are the 6 last people that the ID followed: so you can change it but it'll be updated as soon as you run the code.
+The IDs behind the first columns are the 10 last people that the ID followed: so you can change it but it'll be updated as soon as you run the code.
 
 ## Run the code
 
