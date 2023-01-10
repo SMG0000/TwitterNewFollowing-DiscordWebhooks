@@ -10,7 +10,7 @@ config = dotenv_values(".env")
 
 # For Twitter: Add the relevant keys, tokens and secrets from your Twitter app made here: https://apps.twitter.com/
 
-client = tweepy.Client(bearer_token=config["bearer_token"])
+client = tweepy.Client(bearer_token=config["bearer_token"],wait_on_rate_limit=True)
 
 # Variables - configure the bits below to get your script working. 
 
