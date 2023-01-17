@@ -118,8 +118,8 @@ def followers():
                         writer.writerow([idTweeter, ';'.join(lastFollowing)])
                 print("Finished rewriting!") 
             
-            print("Completed check! 60 seconds interval.")
+            print("Completed check!")
 
-            time.sleep(60)    
+            time.sleep(1)    
     
 followers()    
