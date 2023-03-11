@@ -92,12 +92,12 @@ def followers():
                     content['url'] = "https://twitter.com/" + lastFollowings[0][i].username
 
                     # # Send Discord notification
-                    ## webhook.set_content(author['name'] + ' is now following ' + content['title'] + ' !')
+                    ## webhook.set_content(author['name'] + ' followed ' + content['title'] + ' !')
 
                     webhook.remove_embeds()
                     
                     embed = DiscordEmbed(title=content['title'], description=content['description'], color=style, url=content['url'])
-                    embed.set_author(name=author['name'] + " is now following", url=author['URL'], icon_url=author['IconURL'])
+                    embed.set_author(name=author['name'] + " followed", url=author['URL'], icon_url=author['IconURL'])
                     embed.set_image(url=lastFollowings[0][i].profile_image_url)
                     embed.set_timestamp()
                     
